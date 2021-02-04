@@ -1,10 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
+import './styles/index.styl';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <h2 className="sttyl">Stylus style</h2>
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
