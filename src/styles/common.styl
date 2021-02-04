@@ -1,0 +1,39 @@
+body
+	min-height: 500px;
+
+html, body 
+	height: 100%
+	font-family: "Roboto-latin", Helvetica, Arial, sans-serif
+
+.wrapper 
+	height: 100%
+	background-color: rgb(234,234,234)
+	background-position: center center
+	background-repeat: no-repeat
+
+.content 
+	display: table
+	height: 100%
+	margin: 0 auto
+
+.content-inner 
+	display: table-cell
+	vertical-align: middle
+	// vertical-align: top
+	text-align: center
+
+	& *
+		text-align: initial
+
+.link 
+	font-size: 15px
+	text-decoration: underline
+	color: black
+	font-family: "Roboto-Medium", Helvetica, Arial, sans-serif
+	&: hover, &: focus
+		text-decoration: none
+
+.centered-text-block
+	text-align: center
+	display: inline-block
+	width: 100%

@@ -1,25 +1,49 @@
 import logo from './logo.svg';
 import './App.css';
-import './styles/index.styl';
+import './styles/styles.styl';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h2 className="sttyl">Stylus style</h2>
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div class="content">
+        <div class="content-inner">
+            <div class="login-form">
+                <div class="login-form__content">
+                    <div class="login-form__header">
+                        <h2 class="login-form__name">Sign in</h2>
+                    </div>
+                    <div class="login-form__fields">
+                        <div class="labeled-input">
+                            <label class="labeled-input__label">Email</label>
+                            <input class="labeled-input__input" />
+                        </div>
+                        <div class="labeled-input">
+                            <label class="labeled-input__label">Password</label>
+                            <input class="labeled-input__input" type="password" />
+                        </div>
+                        <div class="labeled-checkbox">
+                            <input class="labeled-checkbox__box" type="checkbox" id="remember" />
+                            <label class="labeled-checkbox__label" for="remember">Remember me?</label>
+                        </div>
+                        <div class="login-form__actions">
+                            <button class="login-form__signin-button">Sign in</button>
+                        </div>
+                    </div>
+                    <div class="login-form__footer">
+                        <div class="centered-text-block">
+                            <a class="link" href="#">Forgot your password?</a>
+                        </div>
+                        <div class="centered-text-block">
+                            <span class="standard-info">
+                                Don't have an account <a class="link" href="#">Sign up</a>
+                            </span>
+                        </div>
+                        <div class="centered-text-block">
+                            <a class="link" href="#">Resend email-conformation</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
   );
 }

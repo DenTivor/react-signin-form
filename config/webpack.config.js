@@ -567,6 +567,15 @@ module.exports = function (webpackEnv) {
             // This loader doesn't use a "test" so it will catch all modules
             // that fall through the other loaders.
             {
+              test: /\.(eot|ttf|woff|woff2)$/,
+              use: [
+                {
+                  loader: 'file-loader',
+                  options: {name: 'font/[name].[ext]'}  
+                }
+              ]
+            },
+            {
               loader: require.resolve('file-loader'),
               // Exclude `js` files to keep "css" loader working as it injects
               // its runtime that would otherwise be processed through "file" loader.
