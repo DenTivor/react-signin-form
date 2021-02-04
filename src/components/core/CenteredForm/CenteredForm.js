@@ -1,22 +1,33 @@
 import React from 'react';
 import './centeredForm.styl';
 
-function CenteredForm({fields, footer, title, actionTitle}) {
+function CenteredForm({
+    actionTitle,
+    fields,
+    footer,
+    isActionButtonDisabled = false,
+    onButtonAction,
+    title
+}) {
     return (
-        <div class="centered-form">
-            <div class="centered-form__content">
-                <div class="centered-form__header">
-                    <h2 class="centered-form__name">{title}</h2>
+        <div className="centered-form">
+            <div className="centered-form__content">
+                <div className="centered-form__header">
+                    <h2 className="centered-form__name">{title}</h2>
                 </div>
-                <div class="centered-form__fields">
+                <div className="centered-form__fields">
                     {fields}
                 </div>
-                <div class="centered-form__actions">
-                    <div class="centered-form__actions">
-                        <button class="centered-form__action-button">{actionTitle}</button>
+                <div className="centered-form__actions">
+                    <div className="centered-form__actions">
+                        <button
+                            className="centered-form__action-button"
+                            disabled={!isActionButtonDisabled}
+                            onClick={onButtonAction}
+                        >{actionTitle}</button>
                     </div>
                 </div>
-                <div class="centered-form__footer">
+                <div className="centered-form__footer">
                     {footer}
                 </div>
             </div>
