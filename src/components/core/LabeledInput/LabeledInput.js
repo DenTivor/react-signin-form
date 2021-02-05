@@ -24,7 +24,7 @@ function LabeledInput({
             </div>
             <label className="labeled-input__label">{label}</label>
             <input
-                autocomplete="off"
+                autoComplete="off"
                 className="labeled-input__input"
                 type={type}
                 onChange={handleInputChange}

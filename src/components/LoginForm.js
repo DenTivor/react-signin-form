@@ -1,26 +1,43 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {
     LabeledCheckbox,
     LabeledInput,
     CenteredForm,
 } from './core';
 import {EMAIL_REGEX, PASSWORD_REGEX} from '../constants';
+import {Context} from '../context';
+import axios from 'axios';
+
+const createUser = (dispatch, user) => {
+    axios.post('https://reqres.in/api/register', {"email": "eve.holt@reqres.in","password": "pistol"})
+    // axios.post('http://localhost:8000/api/login', user)
+    .then(resp => resp.data)
+    .then(user => dispatch({
+        type: 'userSuccessLogin', 
+        payload: user }))
+    .catch(err => dispatch({
+        type: 'userFailedLogin', 
+        payload: err, 
+        error: true })
+    );
+  };
 
 function LoginForm() {
+    const {dispatch} = useContext(Context)
     const [localState, setLocalState] = useState({
-        login: '',
+        email: '',
         password: '',
         isRemember: false,
-        isLoginCorrect: false,
+        isEmailCorrect: false,
         isPasswordCorrect: false,
-        showLoginErrorMessage: false,
+        showEmailErrorMessage: false,
         showPasswordErrorMessage: false,
     })
 
-    const handleLoginFieldChange = (value) => {
+    const handleEmailFieldChange = (value) => {
         setLocalState({
             ...localState,
-            login: value
+            email: value
         })
     }
 
@@ -39,13 +56,13 @@ function LoginForm() {
         })
     }
 
-    const handleLoginFieldBlur = () => {
-        const isCorrect = EMAIL_REGEX.test(localState.login);
+    const handleEmailFieldBlur = () => {
+        const isCorrect = EMAIL_REGEX.test(localState.email);
 
         setLocalState({
             ...localState,
-            isLoginCorrect: isCorrect,
-            showLoginErrorMessage: !isCorrect,
+            isEmailCorrect: isCorrect,
+            showEmailErrorMessage: !isCorrect,
         })
     }
 
@@ -61,7 +78,22 @@ function LoginForm() {
     }
 
     const handleButtonAction = () => {
-        console.log('Action button');
+        createUser(
+            dispatch, 
+            {
+                email: localState.email,
+                password: localState.password,
+                isRemember: localState.isRemember,
+            }
+        )
+        // dispatch({
+        //     type: 'userLogin',
+        //     payload: {
+        //         email: localState.email,
+        //         password: localState.password,
+        //         isRemember: localState.isRemember,
+        //     }
+        // })
     }
 
     const renderFields = () => {
@@ -70,10 +102,10 @@ function LoginForm() {
                 <LabeledInput
                     errorMessage='Please enter valid email'
                     label='Email'
-                    onChange={handleLoginFieldChange}
-                    onInputBlur={handleLoginFieldBlur}
-                    showErrorMessage={localState.showLoginErrorMessage}
-                    value={localState.login}
+                    onChange={handleEmailFieldChange}
+                    onInputBlur={handleEmailFieldBlur}
+                    showErrorMessage={localState.showEmailErrorMessage}
+                    value={localState.email}
                 />
                 <LabeledInput
                     errorMessage='Must have digits and letters'
@@ -117,7 +149,7 @@ function LoginForm() {
             actionTitle='Sign in'
             fields={renderFields()}
             footer={renderFooter()}
-            isActionButtonDisabled={localState.isLoginCorrect && localState.isPasswordCorrect}
+            isActionButtonDisabled={localState.isEmailCorrect && localState.isPasswordCorrect}
             onButtonAction={handleButtonAction}
             title='Sign in'
         />
