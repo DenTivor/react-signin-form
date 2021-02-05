@@ -1,6 +1,18 @@
 import React from 'react'
 import './labeledInput.styl';
 
+/**
+ * @Component
+ * Input with label.
+ * 
+ * @param {String} props.errorMessage Error message text.
+ * @param {String} props.label Text for label.
+ * @param {Function} props.onChange Input's onChange handler.
+ * @param {Function} props.onInputBlur Input's onBlur handler.
+ * @param {Boolean} props.showErrorMessage Mark of showing error message.
+ * @param {String} props.type Input type.
+ * @param {String} props.value Input value.
+ */
 function LabeledInput({
     errorMessage,
     label,
@@ -10,6 +22,11 @@ function LabeledInput({
     type = 'text',
     value
 }) {
+    /**
+     * Handle input change.
+     * 
+     * @param {React.SyntheticEvent} event 
+     */
     const handleInputChange = (event) => {
         onChange(event.target.value)
     }
